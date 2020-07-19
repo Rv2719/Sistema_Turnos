@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.PrincipalController">
+   <children>
+      <Pane layoutX="14.0" layoutY="119.0" prefHeight="388.0" prefWidth="1005.0" style="-fx-background-color: FFCCCB;">
+         <children>
+            <HBox layoutX="14.0" layoutY="14.0" prefHeight="364.0" prefWidth="982.0">
+               <children>
+                  <Pane prefHeight="364.0" prefWidth="556.0" style="-fx-background-color: C94B47;">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Pane>
+                  <VBox fx:id="VBoxTurno" alignment="TOP_CENTER" prefHeight="364.0" prefWidth="204.0" style="-fx-background-color: C94B47;">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="61.0" prefWidth="206.0" text="TURNO" textFill="WHITE">
+                           <font>
+                              <Font size="34.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblT1" text="..." textFill="WHITE">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblT2" text="..." textFill="WHITE">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblT3" text="..." textFill="WHITE">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblT4" text="..." textFill="WHITE">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblT5" text="..." textFill="WHITE">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="VBoxPuesto" alignment="TOP_CENTER" prefHeight="364.0" prefWidth="204.0" style="-fx-background-color: C94B47;">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="61.0" prefWidth="206.0" text="PUESTO" textFill="WHITE">
+                           <font>
+                              <Font size="34.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblP1" text="..." textFill="WHITE">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblP2" text="..." textFill="WHITE">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblP3" text="..." textFill="WHITE">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblP4" text="..." textFill="WHITE">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblP5" text="..." textFill="WHITE">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Label layoutX="26.0" layoutY="25.0" prefHeight="67.0" prefWidth="668.0" text="HOSPITAL GENERAL DE GUAYAQUIL">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnCrearPuesto" layoutX="110.0" layoutY="527.0" mnemonicParsing="false" onAction="#crearPuesto" prefHeight="43.0" prefWidth="99.0" text="Crear Puesto" />
+      <Button fx:id="btnRegistrarPaciente" layoutX="384.0" layoutY="527.0" mnemonicParsing="false" onAction="#registrarPaciente" prefHeight="43.0" prefWidth="124.0" text="Registrar Pacientes" />
+      <Button fx:id="btnCrearMedico" layoutX="250.0" layoutY="527.0" mnemonicParsing="false" onAction="#crearMedico" prefHeight="43.0" prefWidth="92.0" text="Crear Medico" />
+      <Button fx:id="btnAtender" layoutX="751.0" layoutY="527.0" mnemonicParsing="false" onAction="#atenderPaciente" prefHeight="43.0" prefWidth="82.0" text="Atender" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,5 @@
+Raul Villao|09846|Pediatra|1
+Graciela|05650656|Psicologia|0
+Daniela|02310312|Ginecologia|0
+Josue Rodriguez|0254665|Oftalmolog|1
+Yareth Zavala|0260656065|Otorrino|0

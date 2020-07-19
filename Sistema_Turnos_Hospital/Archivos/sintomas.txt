@@ -1,0 +1,8 @@
+vómito|1
+fiebre|0
+resfrio|3
+congestión nasal|3
+mareo|4
+dolor muscular|5
+presion alta|0
+intoxicacion|2
