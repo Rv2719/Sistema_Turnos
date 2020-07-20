@@ -55,7 +55,7 @@ public class CrearMedicoController implements Initializable {
     
     @FXML
     private void atrasMedic(ActionEvent event) throws IOException {
-        sistema_turnos_hospital.Sistema_Turnos_Hospital.s.setRoot(FXMLLoader.load(getClass().getResource("Principal.fxml")));
+        PrincipalController.segunda.setRoot(FXMLLoader.load(getClass().getResource("Options.fxml")));
     }
 
     @FXML

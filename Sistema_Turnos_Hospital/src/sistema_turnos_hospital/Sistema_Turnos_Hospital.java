@@ -9,6 +9,8 @@ import Clases.Medico;
 import Clases.Paciente;
 import Clases.Puesto;
 import Clases.Sintoma;
+import Clases.Video;
+import TDA.CircularLinkedList;
 import TDA.SimplyLinkedList;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -34,6 +36,7 @@ public class Sistema_Turnos_Hospital extends Application {
     public static SimplyLinkedList<Medico> medicos;
     public static PriorityQueue<Paciente> pacientes=new PriorityQueue<>((Paciente p1, Paciente p2)->p1.getSintoma().getPrioridad()-p2.getSintoma().getPrioridad());
     public static SimplyLinkedList<Integer> turnos=new SimplyLinkedList<>();
+    public static CircularLinkedList<Video> videos=new CircularLinkedList<>();
     /**
      * @param args the command line arguments
      */
@@ -41,7 +44,8 @@ public class Sistema_Turnos_Hospital extends Application {
         medicos=leerMedicos("Archivos/doctores.txt");
         puestos=leerPuestos("Archivos/puestos.txt");       
         sintomas=generarSintomas("Archivos/sintomas.txt");
-        
+        videos=leerVideos("Archivos/videos.txt");
+        System.out.println(videos);
         launch(args);  
     }
     
@@ -82,6 +86,21 @@ public class Sistema_Turnos_Hospital extends Application {
                int cedula=Integer.parseInt(linea[1]);
                int numero=Integer.parseInt(linea[0]);
                li.addLast(new Puesto(numero, cedula));
+           }
+        b.close();
+        return li;
+    }
+    
+    public static CircularLinkedList<Video> leerVideos(String direccion) throws IOException{
+        CircularLinkedList<Video> li= new CircularLinkedList<>();
+        FileReader f = new FileReader(direccion);// la ubicacion del archivo debe ser en la carpeta raiz del proyecto, no dentro del src, prefentemente en la carpeta raiz hacer una carpeta llamada config y ahi meter todos los archivos que se necesiten leer.
+        BufferedReader b = new BufferedReader(f);
+        String cadena;
+           while((cadena=b.readLine())!=null){
+               String[] linea=cadena.split("\\|");//es necesario agregarle el doble \\ para que haga el split adecuado
+               int numero=Integer.parseInt(linea[0]);
+               String direc=linea[1];
+               li.addLast(new Video(numero, direc));
            }
         b.close();
         return li;

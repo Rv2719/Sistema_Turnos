@@ -7,10 +7,15 @@ package Interface;
 
 import Clases.Paciente;
 import Clases.Puesto;
+import Clases.Video;
 import TDA.SimplyLinkedList;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +26,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -35,14 +43,6 @@ public class PrincipalController implements Initializable {
     public static SimplyLinkedList<Label> labelsT=new SimplyLinkedList<>();
     public static SimplyLinkedList<Label> labelsP=new SimplyLinkedList<>();
     
-    @FXML
-    private Button btnCrearPuesto;
-    @FXML
-    private Button btnRegistrarPaciente;
-    @FXML
-    private Button btnCrearMedico;
-    @FXML
-    private Button btnAtender;
     @FXML
     private VBox VBoxTurno;
     @FXML
@@ -67,19 +67,63 @@ public class PrincipalController implements Initializable {
     private Label lblP4;
     @FXML
     private Label lblP5;
+    @FXML
+    private MediaView pantallaVideo;
     
+    public static Stage segundaVentana;
+    public static Scene segunda;
+    public Iterator<Video> direccionesVideo=sistema_turnos_hospital.Sistema_Turnos_Hospital.videos.iterator();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if(contador%2==0){
-            update();
+        try {
+            segundaVentana = new Stage();
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("Options.fxml"));
+            Parent root = loader1.load();
+            segunda = new Scene(root);
+            //rController = loader1.getController();
+
+            
+            //System.out.println(rController);
+            //rController.setPrincipal(this);
+            segundaVentana.setTitle("Opciones del programa");
+            segundaVentana.setScene(segunda);
+            segundaVentana.show();
+
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         if(labelsP.isEmpty()){
             llenarListaP();
             llenarListaT();
+        }
+        
+        reproducirVideos(pantallaVideo, direccionesVideo);
+        
+        
+        if(contador%2==0){
+            update();
+        }
+    }
+    
+    private void reproducirVideos(final MediaView pantalla, final Iterator<Video> videos){
+        if (direccionesVideo.hasNext()) {
+            Video v=direccionesVideo.next();
+            File f=new File(v.getDireccion());
+            Media m=new Media(f.toURI().toString());
+            MediaPlayer mp = new MediaPlayer(m);
+            mp.setAutoPlay(true);
+            mp.setOnEndOfMedia(new Runnable() {
+                @Override
+                public void run() {
+                    reproducirVideos(pantalla, (Iterator<Video>) videos);
+                }
+            });
+            pantalla.setMediaPlayer(mp);
         }
     }
 
@@ -91,7 +135,7 @@ public class PrincipalController implements Initializable {
         this.lblP4 = lblP4;
     }
     
-    public void update(){
+    public void update(){       
         Label vacio;
         for(Label l: labelsP){
             String p=l.getText();
@@ -343,29 +387,25 @@ public class PrincipalController implements Initializable {
     }
 
     
-
-    @FXML
+    /*
     private void crearPuesto(ActionEvent event) throws IOException {
         sistema_turnos_hospital.Sistema_Turnos_Hospital.s.setRoot(FXMLLoader.load(getClass().getResource("CrearPuesto.fxml")));
     }
 
-    @FXML
     private void registrarPaciente(ActionEvent event) throws IOException {
         sistema_turnos_hospital.Sistema_Turnos_Hospital.s.setRoot(FXMLLoader.load(getClass().getResource("CrearPaciente.fxml")));
     }
 
-    @FXML
     private void crearMedico(ActionEvent event) throws IOException {
         sistema_turnos_hospital.Sistema_Turnos_Hospital.s.setRoot(FXMLLoader.load(getClass().getResource("CrearMedico.fxml")));
     }
 
-    @FXML
     private void atenderPaciente(ActionEvent event) throws IOException {
         sistema_turnos_hospital.Sistema_Turnos_Hospital.s.setRoot(FXMLLoader.load(getClass().getResource("Atender.fxml")));
     }
 
 
-    
+    */
     
     
 }

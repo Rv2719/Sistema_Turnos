@@ -67,7 +67,7 @@ public class CrearPacienteController implements Initializable {
     }
     @FXML
     private void regresarPaciente(ActionEvent event) throws IOException {
-        sistema_turnos_hospital.Sistema_Turnos_Hospital.s.setRoot(FXMLLoader.load(getClass().getResource("Principal.fxml")));
+        PrincipalController.segunda.setRoot(FXMLLoader.load(getClass().getResource("Options.fxml")));
         
     }
 
@@ -93,7 +93,9 @@ public class CrearPacienteController implements Initializable {
             System.out.println(turno+"<- turno");
             sistema_turnos_hospital.Sistema_Turnos_Hospital.pacientes.add(p); 
             PrincipalController.contador++;
-            sistema_turnos_hospital.Sistema_Turnos_Hospital.s.setRoot(FXMLLoader.load(getClass().getResource("Principal.fxml")));
+            //PrincipalController.update();
+            //sistema_turnos_hospital.Sistema_Turnos_Hospital.s.setRoot(FXMLLoader.load(getClass().getResource("Principal.fxml")));
+            PrincipalController.segunda.setRoot(FXMLLoader.load(getClass().getResource("Options.fxml")));
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR, "No ha ingresado los datos correctamente o falta ingresar datos. \nPor favor ingrese todos los datos o revise si ingreso datos correctos.",ButtonType.CLOSE);
             alert.show();
